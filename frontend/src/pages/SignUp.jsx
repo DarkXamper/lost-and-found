@@ -2,7 +2,6 @@ import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleLogin } from "@react-oauth/google";
-import router from "../router/router";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
