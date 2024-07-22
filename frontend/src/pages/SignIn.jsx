@@ -1,8 +1,11 @@
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
+import { GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="flex flex-col items-center  sm:h-screen dark:bg-[#0d121cf9]">
@@ -90,10 +93,18 @@ const SignIn = () => {
                   {/* <hr className="border-gray-300 dark:border-gray-600" /> */}
                 </div>
                 <div className="flex items-center justify-center gap-4 mt-8">
-                  <Button color="dark" className="w-full">
-                    <FcGoogle className="w-5 h-5 mr-2" />
-                    Login With Google
-                  </Button>
+                  <GoogleLogin
+                    theme="filled_black"
+                    context="signup"
+                    text="signup_with"
+                    onSuccess={(credentialResponse) => {
+                      console.log(credentialResponse);
+                      navigate("/");
+                    }}
+                    onError={() => {
+                      console.log("Login Failed");
+                    }}
+                  />
                 </div>
               </div>
             </div>
