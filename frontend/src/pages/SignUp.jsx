@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -112,7 +113,8 @@ const SignUp = () => {
                     context="signup"
                     text="signup_with"
                     onSuccess={(credentialResponse) => {
-                      console.log(credentialResponse);
+                      const userData = jwtDecode(credentialResponse.credential);
+                      console.log(userData);
                       navigate("/");
                     }}
                     onError={() => {
